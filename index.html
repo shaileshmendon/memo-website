@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Memo — Billing & Invoicing for Advocates</title>
+  <meta name="description" content="Create professional memos, invoices, and bills in seconds. Built for Indian Advocates and Law Firms. Free direct download for Mac." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --grey-50: #fafafa;
+      --grey-100: #f4f4f5;
+      --grey-200: #e4e4e7;
+      --grey-400: #a1a1aa;
+      --grey-600: #52525b;
+      --grey-800: #27272a;
+      --accent: #0a0a0a;
+      --radius: 12px;
+      --radius-lg: 20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--grey-200);
+    }
+
+    .nav-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--black);
+      text-decoration: none;
+    }
+
+    .logo span {
+      display: inline-block;
+      width: 28px; height: 28px;
+      background: var(--black);
+      color: var(--white);
+      border-radius: 7px;
+      text-align: center;
+      line-height: 28px;
+      font-size: 14px;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      color: var(--grey-600);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--black); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.15s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--black);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--grey-800); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--black);
+      border: 1.5px solid var(--grey-200);
+    }
+    .btn-outline:hover { border-color: var(--black); }
+
+    /* HERO */
+    .hero {
+      padding: 140px 24px 100px;
+      max-width: 1080px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--grey-100);
+      border: 1px solid var(--grey-200);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--grey-600);
+      margin-bottom: 32px;
+      letter-spacing: 0.3px;
+    }
+
+    .hero-badge .dot {
+      width: 6px; height: 6px;
+      background: #22c55e;
+      border-radius: 50%;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 72px);
+      font-weight: 700;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      color: var(--black);
+      max-width: 800px;
+      margin: 0 auto 24px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--grey-400);
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--grey-600);
+      max-width: 540px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .hero-actions .btn { font-size: 15px; padding: 13px 26px; }
+
+    .mas-badge-img {
+      height: 40px;
+      opacity: 0.85;
+      transition: opacity 0.15s;
+    }
+    .mas-badge-img:hover { opacity: 1; }
+
+    .hero-preview {
+      margin-top: 72px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--grey-200);
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
+      background: var(--grey-50);
+    }
+
+    .preview-bar {
+      background: var(--grey-100);
+      border-bottom: 1px solid var(--grey-200);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .preview-dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+    }
+    .preview-dot:nth-child(1) { background: #ff5f57; }
+    .preview-dot:nth-child(2) { background: #febc2e; }
+    .preview-dot:nth-child(3) { background: #28c840; }
+
+    .preview-title {
+      font-size: 12px;
+      color: var(--grey-400);
+      margin-left: auto;
+      margin-right: auto;
+      font-weight: 500;
+    }
+
+    /* App mockup inside preview */
+    .app-mockup {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 0;
+      min-height: 480px;
+      text-align: left;
+    }
+
+    .mockup-sidebar {
+      border-right: 1px solid var(--grey-200);
+      padding: 20px 16px 20px 20px;
+      background: var(--grey-50);
+    }
+
+    .mockup-sidebar-label {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--grey-400);
+      margin-bottom: 10px;
+    }
+
+    .mockup-item {
+      padding: 7px 10px;
+      border-radius: 7px;
+      font-size: 11px;
+      color: var(--grey-600);
+      margin-bottom: 3px;
+      cursor: default;
+    }
+
+    .mockup-item.active {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    /* Invoice document styles */
+    .invoice-doc {
+      padding: 28px 32px;
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 11px;
+      color: var(--black);
+      text-align: left;
+      overflow: hidden;
+    }
+
+    .inv-advocate-name {
+      text-align: center;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      margin-bottom: 3px;
+    }
+
+    .inv-advocate-meta {
+      text-align: center;
+      font-size: 10px;
+      color: var(--grey-600);
+      line-height: 1.6;
+    }
+
+    .inv-memo-title {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      margin: 14px 0 10px;
+      letter-spacing: 0.5px;
+    }
+
+    .inv-rule-thick {
+      border: none;
+      border-top: 2px solid var(--black);
+      margin: 0 0 8px;
+    }
+
+    .inv-rule-thin {
+      border: none;
+      border-top: 1px solid var(--grey-400);
+      margin: 8px 0;
+    }
+
+    .inv-meta-row {
+      display: flex;
+      justify-content: flex-end;
+      gap: 6px;
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    .inv-meta-row .inv-meta-labels { text-align: right; font-weight: 700; }
+    .inv-meta-row .inv-meta-vals { text-align: left; }
+
+    .inv-parties {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      font-size: 10px;
+      margin: 8px 0;
+    }
+
+    .inv-party-label { font-size: 9px; font-weight: 700; margin-bottom: 2px; }
+    .inv-party-name { font-weight: 700; font-size: 11px; }
+    .inv-party-sub { color: var(--grey-600); line-height: 1.6; }
+
+    .inv-appearing {
+      font-size: 10px;
+      margin: 6px 0 10px;
+    }
+
+    .inv-table { width: 100%; border-collapse: collapse; font-size: 10px; }
+
+    .inv-table thead tr {
+      border-top: 2px solid var(--black);
+      border-bottom: 1px solid var(--black);
+    }
+
+    .inv-table th {
+      padding: 5px 0;
+      font-weight: 700;
+      text-align: left;
+    }
+
+    .inv-table th:last-child { text-align: right; }
+
+    .inv-table td {
+      padding: 5px 0;
+      border-bottom: 1px solid var(--grey-200);
+      vertical-align: top;
+    }
+
+    .inv-table td:last-child { text-align: right; white-space: nowrap; }
+
+    .inv-subtotal-row td {
+      border-bottom: none;
+      border-top: 1px solid var(--grey-400);
+      padding-top: 6px;
+      font-size: 10px;
+    }
+
+    .inv-total-row td {
+      border-bottom: 2px solid var(--black);
+      border-top: 1px solid var(--black);
+      font-weight: 700;
+      font-size: 11px;
+      padding: 4px 0;
+    }
+
+    .inv-words {
+      text-align: right;
+      font-style: italic;
+      font-size: 9px;
+      color: var(--grey-600);
+      margin-top: 6px;
+    }
+
+    .inv-payment {
+      margin-top: 12px;
+      font-size: 9.5px;
+      line-height: 1.7;
+      color: var(--grey-800);
+    }
+
+    .inv-payment-title { font-weight: 700; margin-bottom: 2px; font-size: 10px; }
+
+    .mockup-total {
+      margin-top: 16px;
+      background: var(--black);
+      color: var(--white);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    /* SECTION COMMON */
+    section { padding: 100px 24px; }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--grey-400);
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      color: var(--grey-600);
+      max-width: 500px;
+      line-height: 1.7;
+    }
+
+    /* FEATURES */
+    .features-alt { background: var(--grey-50); }
+
+    .feature-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .feature-layout.reverse { direction: rtl; }
+    .feature-layout.reverse > * { direction: ltr; }
+
+    .feature-text .section-label { margin-bottom: 12px; }
+    .feature-text .section-title { font-size: clamp(24px, 3vw, 36px); margin-bottom: 16px; }
+
+    .feature-list {
+      list-style: none;
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+      color: var(--grey-600);
+    }
+
+    .feature-list li::before {
+      content: '';
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      background: var(--black);
+      border-radius: 50%;
+      background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      margin-top: 2px;
+    }
+
+    /* Feature card illustrations */
+    .feature-card {
+      background: var(--white);
+      border: 1px solid var(--grey-200);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+    }
+
+    .feature-card.dark {
+      background: var(--black);
+      border-color: var(--grey-800);
+    }
+
+    .card-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--grey-100);
+      font-size: 13px;
+    }
+
+    .feature-card.dark .card-row {
+      border-color: var(--grey-800);
+      color: var(--grey-400);
+    }
+
+    .card-row:last-child { border-bottom: none; }
+
+    .card-label { font-weight: 500; color: var(--black); }
+    .feature-card.dark .card-label { color: var(--white); }
+    .card-value { color: var(--grey-600); }
+
+    .card-tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .tag-paid { background: #dcfce7; color: #15803d; }
+    .tag-pending { background: #fef9c3; color: #a16207; }
+    .tag-draft { background: var(--grey-100); color: var(--grey-600); }
+
+    /* PDF preview card */
+    .pdf-card {
+      background: var(--white);
+      border: 1px solid var(--grey-200);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+
+    .pdf-toolbar {
+      background: var(--grey-100);
+      border-bottom: 1px solid var(--grey-200);
+      padding: 10px 16px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .pdf-toolbar .pdf-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+    }
+    .pdf-toolbar .pdf-dot:nth-child(1) { background: #ff5f57; }
+    .pdf-toolbar .pdf-dot:nth-child(2) { background: #febc2e; }
+    .pdf-toolbar .pdf-dot:nth-child(3) { background: #28c840; }
+
+    .pdf-body {
+      padding: 24px;
+    }
+
+    .pdf-body .pdf-heading {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+    }
+
+    .pdf-body .pdf-sub {
+      font-size: 11px;
+      color: var(--grey-400);
+      margin-bottom: 20px;
+    }
+
+    .pdf-line {
+      height: 8px;
+      background: var(--grey-100);
+      border-radius: 4px;
+      margin-bottom: 8px;
+    }
+
+    .pdf-line.short { width: 60%; }
+    .pdf-line.med { width: 80%; }
+    .pdf-line.full { width: 100%; }
+    .pdf-line.dark-line { background: var(--grey-200); }
+
+    .pdf-total-bar {
+      margin-top: 16px;
+      background: var(--black);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    /* PRICING */
+    .pricing { background: var(--grey-50); }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 56px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .pricing-card {
+      background: var(--white);
+      border: 1.5px solid var(--grey-200);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+    }
+
+    .pricing-card.featured {
+      background: var(--black);
+      border-color: var(--black);
+      color: var(--white);
+    }
+
+    .pricing-plan {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--grey-400);
+      margin-bottom: 16px;
+    }
+
+    .pricing-card.featured .pricing-plan { color: var(--grey-400); }
+
+    .pricing-price {
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      line-height: 1;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+
+    .pricing-card.featured .pricing-price { color: var(--white); }
+
+    .pricing-note {
+      font-size: 13px;
+      color: var(--grey-400);
+      margin-bottom: 28px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .pricing-features li {
+      font-size: 14px;
+      color: var(--grey-600);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .pricing-card.featured .pricing-features li { color: var(--grey-400); }
+
+    .pricing-features li::before {
+      content: '✓';
+      font-weight: 700;
+      color: var(--black);
+      font-size: 13px;
+    }
+
+    .pricing-card.featured .pricing-features li::before { color: var(--white); }
+
+    .pricing-cta {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+      padding: 13px;
+      font-size: 14px;
+    }
+
+    .tip-note {
+      text-align: center;
+      margin-top: 32px;
+      font-size: 14px;
+      color: var(--grey-400);
+    }
+
+    .tip-note a {
+      color: var(--black);
+      font-weight: 500;
+      text-decoration: none;
+      border-bottom: 1px solid var(--grey-200);
+      transition: border-color 0.15s;
+    }
+
+    .tip-note a:hover { border-color: var(--black); }
+
+    /* FAQ */
+    .faq-list {
+      margin-top: 56px;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--grey-200);
+    }
+
+    .faq-item:first-child { border-top: 1px solid var(--grey-200); }
+
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 22px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--black);
+      cursor: pointer;
+      text-align: left;
+      gap: 16px;
+    }
+
+    .faq-icon {
+      width: 24px; height: 24px;
+      min-width: 24px;
+      border-radius: 50%;
+      background: var(--grey-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: all 0.2s;
+      color: var(--black);
+    }
+
+    .faq-item.open .faq-icon {
+      background: var(--black);
+      color: var(--white);
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-answer-inner {
+      padding-bottom: 22px;
+      font-size: 15px;
+      color: var(--grey-600);
+      line-height: 1.7;
+    }
+
+    .faq-item.open .faq-answer { max-height: 300px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 64px 24px 40px;
+    }
+
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 48px;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .footer-brand .logo {
+      color: var(--white);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .footer-brand .logo span {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .footer-brand p {
+      font-size: 14px;
+      color: var(--grey-400);
+      max-width: 240px;
+      line-height: 1.6;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 56px;
+      flex-wrap: wrap;
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--grey-400);
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-col ul a {
+      font-size: 14px;
+      color: var(--grey-400);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-col ul a:hover { color: var(--white); }
+
+    .footer-mas {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      margin-bottom: 40px;
+    }
+
+    .footer-mas-icon {
+      width: 48px; height: 48px;
+      background: var(--white);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .footer-mas-text h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 2px;
+    }
+
+    .footer-mas-text p {
+      font-size: 12px;
+      color: var(--grey-400);
+    }
+
+    .mas-store-btn {
+      margin-left: auto;
+    }
+
+    .mas-store-btn img {
+      height: 36px;
+      filter: invert(0);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-bottom p {
+      font-size: 13px;
+      color: var(--grey-400);
+    }
+
+    .footer-legal {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-legal a {
+      font-size: 13px;
+      color: var(--grey-400);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .footer-legal a:hover { color: var(--white); }
+
+    /* Download button */
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--black);
+      color: var(--white);
+      border-radius: 10px;
+      padding: 11px 22px;
+      text-decoration: none;
+      border: none;
+      font-size: 15px;
+      font-weight: 600;
+      transition: opacity 0.15s;
+    }
+
+    .download-btn:hover { opacity: 0.85; }
+
+    .download-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    .download-btn-footer {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--white);
+      border-radius: 10px;
+      padding: 9px 18px;
+      text-decoration: none;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      font-size: 14px;
+      font-weight: 500;
+      transition: border-color 0.15s;
+    }
+
+    .download-btn-footer:hover { border-color: rgba(255,255,255,0.5); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .feature-layout { grid-template-columns: 1fr; gap: 40px; }
+      .feature-layout.reverse { direction: ltr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .footer-top { flex-direction: column; }
+      .footer-mas { flex-wrap: wrap; }
+      .mas-store-btn { margin-left: 0; }
+      .app-mockup { grid-template-columns: 1fr; }
+      .mockup-sidebar { display: none; }
+      .invoice-doc { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo"><span>M</span>Memo</a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li>
+        <a href="#download" class="btn btn-primary" style="padding: 8px 16px; font-size: 13px;">
+          Download Free
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-badge">
+    <span class="dot"></span>
+    Free direct download for Mac
+  </div>
+
+  <h1>Billing made simple<br/><em>for Advocates.</em></h1>
+
+  <p>Create professional invoices, memos, and fee receipts in seconds. Designed specifically for Indian Advocates and Law Firms.</p>
+
+  <div class="hero-actions">
+    <a href="#download" class="download-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Download for Mac — Free
+    </a>
+    <a href="#features" class="btn btn-outline">See Features</a>
+  </div>
+
+  <div class="hero-preview">
+    <div class="preview-bar">
+      <div class="preview-dot"></div>
+      <div class="preview-dot"></div>
+      <div class="preview-dot"></div>
+      <span class="preview-title">Memo — Invoice #2024-089</span>
+    </div>
+    <div class="app-mockup">
+      <div class="mockup-sidebar">
+        <div class="mockup-sidebar-label">Documents</div>
+        <div class="mockup-item active">Memo — Kapoor</div>
+        <div class="mockup-item">Memo — Tata Ind.</div>
+        <div class="mockup-item">Fee Receipt #31</div>
+        <div class="mockup-item">Memo — Singhania</div>
+        <div class="mockup-item">Memo — Oberoi</div>
+      </div>
+
+      <div class="invoice-doc">
+
+        <div class="inv-advocate-name">Rajiv Nair</div>
+        <div class="inv-advocate-meta">
+          Advocate, High Court<br/>
+          Chambers No. 14, New Lawyers Building, Bombay High Court,<br/>
+          Fort, Mumbai, Maharashtra — 400032<br/>
+          Tel: +91 98200 11234 &nbsp;·&nbsp; rajiv.nair.adv@gmail.com
+        </div>
+
+        <div class="inv-memo-title">Memorandum of Fees</div>
+        <hr class="inv-rule-thick" />
+
+        <div class="inv-meta-row">
+          <div class="inv-meta-labels">
+            Invoice No.:<br/>Date:<br/>Due:<br/>Matter:<br/>Matter No.:
+          </div>
+          <div class="inv-meta-vals">
+            INV-2026-037<br/>29 May 2026<br/>28 June 2026<br/>Kapoor Textiles vs. Union of India<br/>WP/2026/0892
+          </div>
+        </div>
+
+        <hr class="inv-rule-thin" />
+
+        <div class="inv-parties">
+          <div>
+            <div class="inv-party-label">Engaged by (AOR / Firm):</div>
+            <div class="inv-party-name">Desai &amp; Mehrotra, Advocates</div>
+            <div class="inv-party-sub">
+              GSTIN: 27AABFD9321K1ZX<br/>
+              contact@desaimehrotra.in
+            </div>
+          </div>
+          <div>
+            <div class="inv-party-label">Client:</div>
+            <div class="inv-party-name">Kapoor Textiles Pvt. Ltd.</div>
+            <div class="inv-party-sub">
+              GSTIN: 27AACKK8821R1ZM<br/>
+              legal@kapoortextiles.com
+            </div>
+          </div>
+        </div>
+
+        <hr class="inv-rule-thin" />
+
+        <div class="inv-appearing"><strong>Appearing for:</strong> Petitioner — Kapoor Textiles Pvt. Ltd.</div>
+
+        <table class="inv-table">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th style="text-align:right">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Appearance — Bombay High Court, Hearing (12 May 2026)</td>
+              <td>Rs. 25,000.00</td>
+            </tr>
+            <tr>
+              <td>Appearance — Bombay High Court, Arguments (19 May 2026)</td>
+              <td>Rs. 25,000.00</td>
+            </tr>
+            <tr>
+              <td>Drafting of Written Submissions — 4 hrs @ Rs. 5,000/hr</td>
+              <td>Rs. 20,000.00</td>
+            </tr>
+            <tr>
+              <td>Legal Research and Case Analysis — 3 hrs @ Rs. 5,000/hr</td>
+              <td>Rs. 15,000.00</td>
+            </tr>
+            <tr class="inv-subtotal-row">
+              <td style="text-align:right">Subtotal</td>
+              <td>Rs. 85,000.00</td>
+            </tr>
+            <tr>
+              <td style="text-align:right; font-size:10px; color:#71717a; border-bottom: 1px solid var(--grey-200); padding: 3px 0;">GST @ 0%</td>
+              <td style="font-size:10px; color:#71717a; border-bottom: 1px solid var(--grey-200); padding: 3px 0;">Rs. 0.00</td>
+            </tr>
+            <tr class="inv-total-row">
+              <td style="text-align:right">Total</td>
+              <td>Rs. 85,000.00</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="inv-words">Amount in words: Rupees Eighty-Five Thousand Only</div>
+
+        <hr class="inv-rule-thin" />
+
+        <div class="inv-payment">
+          <div class="inv-payment-title">Payment Details</div>
+          Account Name: Rajiv Nair &nbsp;·&nbsp; Bank: Axis Bank, Fort Branch, Mumbai<br/>
+          A/c No.: 9210045678901 &nbsp;·&nbsp; IFSC: UTIB0000042 &nbsp;·&nbsp; UPI: rajivnair@axisbank
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE 1 -->
+<section id="features">
+  <div class="container">
+    <div class="feature-layout">
+      <div class="feature-text">
+        <div class="section-label">Invoicing</div>
+        <h2 class="section-title">Professional invoices in under a minute.</h2>
+        <p class="section-sub">Add your firm name, client details, and line items — Memo handles the formatting. Every invoice looks polished without the effort.</p>
+        <ul class="feature-list">
+          <li>Pre-built templates for advocate billing</li>
+          <li>Line items for appearances, drafting &amp; consultation</li>
+          <li>Automatic totals with GST support</li>
+          <li>Export to PDF with one click</li>
+        </ul>
+      </div>
+      <div>
+        <div class="feature-card">
+          <div class="card-row">
+            <span class="card-label">Appearance — District Court</span>
+            <span class="card-value">₹ 5,000</span>
+          </div>
+          <div class="card-row">
+            <span class="card-label">Drafting — Plaint</span>
+            <span class="card-value">₹ 12,000</span>
+          </div>
+          <div class="card-row">
+            <span class="card-label">Legal Opinion</span>
+            <span class="card-value">₹ 8,000</span>
+          </div>
+          <div class="card-row">
+            <span class="card-label">GST @ 18%</span>
+            <span class="card-value">₹ 4,500</span>
+          </div>
+          <div style="margin-top: 16px;" class="mockup-total">
+            <span>Total Due</span>
+            <span>₹ 29,500</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE 2 -->
+<section class="features-alt">
+  <div class="container">
+    <div class="feature-layout reverse">
+      <div class="feature-text">
+        <div class="section-label">Client Management</div>
+        <h2 class="section-title">Track every client, every case.</h2>
+        <p class="section-sub">Keep a clear record of all your invoices by client and matter. Know what's paid, what's pending, and what's outstanding — at a glance.</p>
+        <ul class="feature-list">
+          <li>Organise invoices by client or matter</li>
+          <li>Track payment status — paid, pending, overdue</li>
+          <li>Search and filter your billing history</li>
+          <li>Works entirely offline — no internet needed</li>
+        </ul>
+      </div>
+      <div>
+        <div class="feature-card dark">
+          <div style="font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: #52525b; margin-bottom: 16px;">All Invoices</div>
+          <div class="card-row">
+            <span class="card-label">Ramesh Kumar v. State</span>
+            <span><span class="card-tag tag-paid">Paid</span></span>
+          </div>
+          <div class="card-row">
+            <span class="card-label">Priya Mehta — Property Dispute</span>
+            <span><span class="card-tag tag-pending">Pending</span></span>
+          </div>
+          <div class="card-row">
+            <span class="card-label">M/s Agarwal &amp; Co.</span>
+            <span><span class="card-tag tag-paid">Paid</span></span>
+          </div>
+          <div class="card-row">
+            <span class="card-label">Suresh Nair — HC Appeal</span>
+            <span><span class="card-tag tag-draft">Draft</span></span>
+          </div>
+          <div class="card-row">
+            <span class="card-label">Lata Bose — Family Court</span>
+            <span><span class="card-tag tag-pending">Pending</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE 3 -->
+<section>
+  <div class="container">
+    <div class="feature-layout">
+      <div class="feature-text">
+        <div class="section-label">PDF Export</div>
+        <h2 class="section-title">Share a clean PDF instantly.</h2>
+        <p class="section-sub">Every invoice exports as a clean, print-ready PDF. Share via WhatsApp, email, or print directly — formatted exactly as your client expects.</p>
+        <ul class="feature-list">
+          <li>Court-ready and client-ready formatting</li>
+          <li>Your firm name, address and logo on every page</li>
+          <li>Share directly via WhatsApp or Mail from the app</li>
+          <li>Print or save to Files with a single tap</li>
+        </ul>
+      </div>
+      <div>
+        <div class="pdf-card">
+          <div class="pdf-toolbar">
+            <div class="pdf-dot"></div>
+            <div class="pdf-dot"></div>
+            <div class="pdf-dot"></div>
+          </div>
+          <div class="pdf-body">
+            <div class="pdf-heading">Sharma &amp; Associates</div>
+            <div class="pdf-sub">Advocates &amp; Solicitors · New Delhi</div>
+            <div class="pdf-line full dark-line"></div>
+            <div class="pdf-line med"></div>
+            <div class="pdf-line full"></div>
+            <div class="pdf-line short"></div>
+            <div style="height: 12px;"></div>
+            <div class="pdf-line full dark-line"></div>
+            <div class="pdf-line med"></div>
+            <div class="pdf-line full"></div>
+            <div class="pdf-line short"></div>
+            <div class="pdf-total-bar">
+              <span>Total Due</span>
+              <span>₹ 30,700</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container" style="text-align: center;">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-title">Free. Forever.</h2>
+    <p class="section-sub" style="margin: 0 auto;">Memo is completely free to use. If it saves you time and you'd like to support the developer, a small tip goes a long way.</p>
+
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-plan">Free Plan</div>
+        <div class="pricing-price">₹0</div>
+        <div class="pricing-note">No subscription. No hidden fees.</div>
+        <ul class="pricing-features">
+          <li>Unlimited invoices &amp; memos</li>
+          <li>PDF export</li>
+          <li>Client &amp; matter tracking</li>
+          <li>GST support</li>
+          <li>Works fully offline</li>
+        </ul>
+        <a href="#download" class="btn btn-primary pricing-cta">Download Free</a>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-plan">Support the Creator</div>
+        <div class="pricing-price" style="font-size: 36px;">&#x2665;</div>
+        <div class="pricing-note">A tip — any amount you like.</div>
+        <ul class="pricing-features">
+          <li>Everything in Free</li>
+          <li>Helps fund new features</li>
+          <li>Supports indie Mac development</li>
+          <li>One-time, no recurring charge</li>
+          <li>100% optional</li>
+        </ul>
+        <a href="#tip" class="btn btn-outline pricing-cta" style="border-color: rgba(255,255,255,0.2); color: white;">Send a Tip</a>
+      </div>
+    </div>
+
+    <p class="tip-note">
+      You can send a tip anytime from within the app under <strong>Memo → Support the Developer</strong>.<br/>
+      Every tip is deeply appreciated and helps keep Memo free for everyone.
+    </p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container" style="text-align: center;">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Common questions.</h2>
+
+    <div class="faq-list" style="text-align: left;">
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Is Memo really free?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Yes — completely free, with no trial period, no watermarks, and no subscription. You can send the developer an optional tip from within the app if you find it useful, but there is no obligation whatsoever.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Do I need an internet connection to use Memo?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            No. Memo works entirely offline. Your data is stored locally on your Mac — no account creation, no cloud sync, no data leaving your device. Your client information stays private.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Can I add my firm's letterhead and logo?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Yes. You can add your firm name, address, and logo in Settings. These appear on every invoice and memo you generate, giving your documents a professional, personalised look.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Does Memo support GST billing?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Yes. You can add GSTIN details for your firm and your clients. GST is calculated automatically on your invoice total, and the GST breakdown is clearly shown on the exported PDF.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Which macOS versions are supported?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Memo requires macOS 13 Ventura or later. It is a native Mac app built with SwiftUI and is optimised for Apple Silicon and Intel Macs.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          How do I share invoices with clients?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            From any invoice, tap the Share button to send the PDF via Mail, WhatsApp, Messages, or AirDrop — or save it to Files for later. The PDF is formatted cleanly and ready to send.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          I have a feature request or found a bug. How do I reach you?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            You can reach the developer via the feedback option inside the app under Memo → Send Feedback. Feature requests are always welcome.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="download">
+  <div class="footer-inner">
+
+    <div class="footer-mas">
+      <div class="footer-mas-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      </div>
+      <div class="footer-mas-text">
+        <h4>Direct Download — Free</h4>
+        <p>macOS 13 Ventura and later · Native Mac app · No App Store required</p>
+      </div>
+      <div class="mas-store-btn">
+        <a href="#" class="download-btn-footer">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download Memo
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo"><span>M</span>Memo</a>
+        <p>Simple, fast billing for Indian Advocates and Law Firms. Free direct download for Mac.</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#download">Download</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Support</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2024 Memo App. Made with care in India.</p>
+      <div class="footer-legal">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+
+    // Open clicked if it wasn't already open
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
+
+</body>
+</html>

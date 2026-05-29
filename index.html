@@ -9,80 +9,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    /* Version banner */
-    .version-banner {
-      display: none;
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 200;
-      background: var(--black);
-      color: var(--white);
-      border-radius: 14px;
-      padding: 14px 20px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
-      display: none;
-      align-items: center;
-      gap: 14px;
-      font-size: 13px;
-      white-space: nowrap;
-      animation: slideUp 0.3s ease;
-    }
-
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateX(-50%) translateY(12px); }
-      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
-    }
-
-    .version-banner.show { display: flex; }
-
-    .version-banner-dot {
-      width: 8px; height: 8px;
-      background: #22c55e;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    .version-banner-text { color: rgba(255,255,255,0.75); }
-    .version-banner-text strong { color: #ffffff; }
-
-    .version-banner-btn {
-      background: #ffffff;
-      color: #000000;
-      border: none;
-      border-radius: 8px;
-      padding: 7px 14px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      transition: opacity 0.15s;
-    }
-
-    .version-banner-btn:hover { opacity: 0.85; }
-
-    .version-banner-close {
-      background: none;
-      border: none;
-      color: rgba(255,255,255,0.4);
-      cursor: pointer;
-      font-size: 18px;
-      line-height: 1;
-      padding: 0 0 0 4px;
-      transition: color 0.15s;
-    }
-
-    .version-banner-close:hover { color: #ffffff; }
-
-    /* Version tag on buttons */
-    .version-tag {
-      font-size: 10px;
-      opacity: 0.6;
-      font-weight: 400;
-      margin-left: 2px;
-    }
-  </style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -1571,14 +1497,6 @@
   </div>
 </footer>
 
-<!-- New version banner -->
-<div class="version-banner" id="versionBanner">
-  <span class="version-banner-dot"></span>
-  <span class="version-banner-text">New version available: <strong id="bannerVersion"></strong></span>
-  <a id="bannerDownloadBtn" href="#" class="version-banner-btn">Download</a>
-  <button class="version-banner-close" onclick="dismissBanner()">×</button>
-</div>
-
 <script>
   function toggleFaq(btn) {
     const item = btn.closest('.faq-item');
@@ -1592,59 +1510,6 @@
   }
 </script>
 
-<script>
-  // Fetch version.json and update all download buttons + show new version banner
-  async function loadVersion() {
-    try {
-      const res = await fetch('/version.json?t=' + Date.now());
-      const data = await res.json();
-      const { version, downloadUrl, releaseDate } = data;
-
-      // Update all download button hrefs and labels
-      document.querySelectorAll('a.download-btn, a.btn-primary').forEach(btn => {
-        btn.href = downloadUrl;
-        // Inject version tag if not already there
-        if (!btn.querySelector('.version-tag')) {
-          const tag = document.createElement('span');
-          tag.className = 'version-tag';
-          tag.textContent = 'v' + version;
-          btn.appendChild(tag);
-        }
-      });
-
-      // Also update footer download button
-      document.querySelectorAll('a.download-btn-footer').forEach(btn => {
-        btn.href = downloadUrl;
-      });
-
-      // Check if user previously downloaded an older version
-      const lastSeen = localStorage.getItem('memo_last_seen_version');
-
-      if (lastSeen && lastSeen !== version) {
-        // Show new version banner
-        document.getElementById('bannerVersion').textContent = 'v' + version;
-        document.getElementById('bannerDownloadBtn').href = downloadUrl;
-        document.getElementById('versionBanner').classList.add('show');
-      }
-
-      // Record this version as seen when any download button is clicked
-      document.querySelectorAll('a[href*=".dmg"], a.download-btn, a.btn-primary').forEach(btn => {
-        btn.addEventListener('click', () => {
-          localStorage.setItem('memo_last_seen_version', version);
-        });
-      });
-
-    } catch (e) {
-      console.warn('Could not load version.json', e);
-    }
-  }
-
-  function dismissBanner() {
-    document.getElementById('versionBanner').classList.remove('show');
-  }
-
-  loadVersion();
-</script>
 
 </body>
 </html>

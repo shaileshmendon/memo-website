@@ -688,6 +688,29 @@
       font-size: 14px;
     }
 
+    .tip-amount-btn {
+      flex: 1;
+      min-width: 60px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1.5px solid rgba(255,255,255,0.15);
+      background: transparent;
+      color: rgba(255,255,255,0.6);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .tip-amount-btn:hover { border-color: rgba(255,255,255,0.4); color: white; }
+
+    .tip-amount-btn.active {
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.5);
+      color: white;
+    }
+
     .tip-note {
       text-align: center;
       margin-top: 32px;
@@ -1337,13 +1360,15 @@
         <div class="pricing-price">₹0</div>
         <div class="pricing-note">No subscription. No hidden fees.</div>
         <ul class="pricing-features">
-          <li>Unlimited invoices &amp; memos</li>
-          <li>PDF export</li>
-          <li>Client &amp; matter tracking</li>
-          <li>GST support</li>
+          <li>Unlimited matters &amp; clients</li>
+          <li>PDF invoice generation</li>
+          <li>GST &amp; TDS support</li>
+          <li>Appearances &amp; time tracking</li>
+          <li>Apple Contacts integration</li>
           <li>Works fully offline</li>
+          <li>Backup &amp; restore</li>
         </ul>
-        <a href="https://github.com/shaileshmendon/MemoAppTauri/releases/download/v1.0/Memo_1.0.0_aarch64.dmg" class="btn btn-primary pricing-cta">Download Free</a>
+        <a href="https://github.com/shaileshmendon/MemoAppTauri/releases/download/v1.1.2/Memo_1.1.2_aarch64.dmg" class="btn btn-primary pricing-cta">Download Free</a>
       </div>
 
       <div class="pricing-card featured">
@@ -1357,12 +1382,19 @@
           <li>One-time, no recurring charge</li>
           <li>100% optional</li>
         </ul>
-        <a href="#tip" class="btn btn-outline pricing-cta" style="border-color: rgba(255,255,255,0.2); color: white;">Send a Tip</a>
+        <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap;">
+          <button onclick="setTip(199)" class="tip-amount-btn" id="tip-199">₹199</button>
+          <button onclick="setTip(499)" class="tip-amount-btn active" id="tip-499">₹499</button>
+          <button onclick="setTip(999)" class="tip-amount-btn" id="tip-999">₹999</button>
+          <button onclick="setTip('custom')" class="tip-amount-btn" id="tip-custom">Custom</button>
+        </div>
+        <a id="tipBtn" href="upi://pay?pa=shaileshmendon@upi&pn=Shailesh%20Mendon&am=499&cu=INR&tn=Memo%20App%20Tip" class="btn btn-outline pricing-cta" style="border-color: rgba(255,255,255,0.2); color: white; margin-bottom: 10px;">Send a Tip — ₹499</a>
+        <button onclick="copyUPI()" style="background: none; border: none; color: rgba(255,255,255,0.4); font-size: 12px; cursor: pointer; width: 100%; text-align: center; padding: 4px 0;">&#x2398; Copy UPI ID</button>
       </div>
     </div>
 
     <p class="tip-note">
-      You can send a tip anytime from within the app under <strong>Memo → Support the Developer</strong>.<br/>
+      You can send a tip anytime from within the app via <strong>About → Support the Developer</strong>.<br/>
       Every tip is deeply appreciated and helps keep Memo free for everyone.
     </p>
   </div>
@@ -1581,6 +1613,34 @@
 </div>
 
 <script>
+  const UPI_ID = 'stripes_swoops_2b@icloud.com';
+  let currentTip = 499;
+
+  function setTip(amount) {
+    document.querySelectorAll('.tip-amount-btn').forEach(b => b.classList.remove('active'));
+    if (amount === 'custom') {
+      const val = prompt('Enter tip amount in ₹:');
+      if (!val || isNaN(val)) return;
+      currentTip = parseInt(val);
+      document.getElementById('tip-custom').classList.add('active');
+    } else {
+      currentTip = amount;
+      document.getElementById('tip-' + amount).classList.add('active');
+    }
+    const btn = document.getElementById('tipBtn');
+    btn.href = `upi://pay?pa=${UPI_ID}&pn=Shailesh%20Mendon&am=${currentTip}&cu=INR&tn=Memo%20App%20Tip`;
+    btn.textContent = `Send a Tip — ₹${currentTip}`;
+    btn.style.cssText = 'border-color: rgba(255,255,255,0.2); color: white; margin-bottom: 10px;';
+  }
+
+  function copyUPI() {
+    navigator.clipboard.writeText(UPI_ID).then(() => {
+      const btn = event.target;
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => btn.textContent = '⌘ Copy UPI ID', 2000);
+    });
+  }
+
   function toggleFaq(btn) {
     const item = btn.closest('.faq-item');
     const isOpen = item.classList.contains('open');

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Memo — Billing & Invoicing for Advocates</title>
-  <meta name="description" content="Create professional memos, invoices, and bills in seconds. Built for Indian Advocates and Law Firms. Free direct download for Mac." />
+  <title>Memo — Practice Management for Indian Advocates</title>
+  <meta name="description" content="Memo is a free macOS app for Indian advocates to manage matters, log work, and generate GST-compliant invoices — offline, no subscription, no cloud." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -443,6 +443,79 @@
 
     /* FEATURES */
     .features-alt { background: var(--grey-50); }
+
+    /* Feature grid */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 56px;
+    }
+
+    .feat-card {
+      background: var(--white);
+      border: 1px solid var(--grey-200);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: box-shadow 0.15s;
+    }
+
+    .feat-card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    .feat-card-icon {
+      font-size: 24px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .feat-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 12px;
+      letter-spacing: -0.2px;
+    }
+
+    .feat-card-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .feat-card-list li {
+      font-size: 12.5px;
+      color: var(--grey-600);
+      line-height: 1.5;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .feat-card-list li::before {
+      content: '–';
+      position: absolute;
+      left: 0;
+      color: var(--grey-400);
+    }
+
+    .feat-card.dark-card {
+      background: var(--black);
+      border-color: var(--grey-800);
+    }
+
+    .feat-card.dark-card .feat-card-title { color: var(--white); }
+    .feat-card.dark-card .feat-card-list li { color: var(--grey-400); }
+    .feat-card.dark-card .feat-card-list li::before { color: var(--grey-600); }
+
+    @media (max-width: 1024px) {
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .feature-grid { grid-template-columns: 1fr; }
+    }
 
     .feature-layout {
       display: grid;
@@ -1085,9 +1158,9 @@
     Free direct download for Mac
   </div>
 
-  <h1>Billing made simple<br/><em>for Advocates.</em></h1>
+  <h1>Your legal practice,<br/><em>organised.</em></h1>
 
-  <p>Create professional invoices, memos, and fee receipts in seconds. Designed specifically for Indian Advocates and Law Firms.</p>
+  <p>Matters. Work. Invoices. Done. A free, offline-first macOS app for Indian advocates to manage matters, log work, and generate GST-compliant invoices — without subscriptions, cloud storage, or internet.</p>
 
   <div class="hero-actions">
     <a href="https://github.com/shaileshmendon/MemoAppTauri/releases/download/v1.0/Memo_1.0.0_aarch64.dmg" class="download-btn">
@@ -1215,134 +1288,99 @@
   </div>
 </section>
 
-<!-- FEATURE 1 -->
-<section id="features">
+<!-- FEATURES -->
+<section id="features" style="background: var(--grey-50);">
   <div class="container">
-    <div class="feature-layout">
-      <div class="feature-text">
-        <div class="section-label">Invoicing</div>
-        <h2 class="section-title">Professional invoices in under a minute.</h2>
-        <p class="section-sub">Add your firm name, client details, and line items — Memo handles the formatting. Every invoice looks polished without the effort.</p>
-        <ul class="feature-list">
-          <li>Pre-built templates for advocate billing</li>
-          <li>Line items for appearances, drafting &amp; consultation</li>
-          <li>Automatic totals with GST support</li>
-          <li>Export to PDF with one click</li>
-        </ul>
-      </div>
-      <div>
-        <div class="feature-card">
-          <div class="card-row">
-            <span class="card-label">Appearance — District Court</span>
-            <span class="card-value">₹ 5,000</span>
-          </div>
-          <div class="card-row">
-            <span class="card-label">Drafting — Plaint</span>
-            <span class="card-value">₹ 12,000</span>
-          </div>
-          <div class="card-row">
-            <span class="card-label">Legal Opinion</span>
-            <span class="card-value">₹ 8,000</span>
-          </div>
-          <div class="card-row">
-            <span class="card-label">GST @ 18%</span>
-            <span class="card-value">₹ 4,500</span>
-          </div>
-          <div style="margin-top: 16px;" class="mockup-total">
-            <span>Total Due</span>
-            <span>₹ 29,500</span>
-          </div>
-        </div>
-      </div>
+    <div style="text-align: center;">
+      <div class="section-label">Features</div>
+      <h2 class="section-title">Everything your practice needs.</h2>
+      <p class="section-sub" style="margin: 0 auto;">Built ground-up for Indian advocates — from the first brief to the final invoice.</p>
     </div>
-  </div>
-</section>
 
-<!-- FEATURE 2 -->
-<section class="features-alt">
-  <div class="container">
-    <div class="feature-layout reverse">
-      <div class="feature-text">
-        <div class="section-label">Client Management</div>
-        <h2 class="section-title">Track every client, every case.</h2>
-        <p class="section-sub">Keep a clear record of all your invoices by client and matter. Know what's paid, what's pending, and what's outstanding — at a glance.</p>
-        <ul class="feature-list">
-          <li>Organise invoices by client or matter</li>
-          <li>Track payment status — paid, pending, overdue</li>
-          <li>Search and filter your billing history</li>
-          <li>Works entirely offline — no internet needed</li>
+    <div class="feature-grid">
+
+      <div class="feat-card">
+        <span class="feat-card-icon">⚖️</span>
+        <div class="feat-card-title">Matter Management</div>
+        <ul class="feat-card-list">
+          <li>Unlimited matters: litigation, advisory, drafting, corporate</li>
+          <li>Sequential reference numbers (#001, #002…)</li>
+          <li>Link clients, AOR/firms, and handler advocates</li>
+          <li>Active / closed / on-hold status tracking</li>
         </ul>
       </div>
-      <div>
-        <div class="feature-card dark">
-          <div style="font-size: 12px; font-weight: 600; letter-spacing: 0.8px; text-transform: uppercase; color: #52525b; margin-bottom: 16px;">All Invoices</div>
-          <div class="card-row">
-            <span class="card-label">Ramesh Kumar v. State</span>
-            <span><span class="card-tag tag-paid">Paid</span></span>
-          </div>
-          <div class="card-row">
-            <span class="card-label">Priya Mehta — Property Dispute</span>
-            <span><span class="card-tag tag-pending">Pending</span></span>
-          </div>
-          <div class="card-row">
-            <span class="card-label">M/s Agarwal &amp; Co.</span>
-            <span><span class="card-tag tag-paid">Paid</span></span>
-          </div>
-          <div class="card-row">
-            <span class="card-label">Suresh Nair — HC Appeal</span>
-            <span><span class="card-tag tag-draft">Draft</span></span>
-          </div>
-          <div class="card-row">
-            <span class="card-label">Lata Bose — Family Court</span>
-            <span><span class="card-tag tag-pending">Pending</span></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- FEATURE 3 -->
-<section>
-  <div class="container">
-    <div class="feature-layout">
-      <div class="feature-text">
-        <div class="section-label">PDF Export</div>
-        <h2 class="section-title">Share a clean PDF instantly.</h2>
-        <p class="section-sub">Every invoice exports as a clean, print-ready PDF. Share via WhatsApp, email, or print directly — formatted exactly as your client expects.</p>
-        <ul class="feature-list">
-          <li>Court-ready and client-ready formatting</li>
-          <li>Your firm name, address and logo on every page</li>
-          <li>Share directly via WhatsApp or Mail from the app</li>
-          <li>Print or save to Files with a single tap</li>
+      <div class="feat-card">
+        <span class="feat-card-icon">👥</span>
+        <div class="feat-card-title">Clients &amp; Firms</div>
+        <ul class="feat-card-list">
+          <li>Full directory of clients and opposing/briefing firms</li>
+          <li>Multiple contacts per entity with Apple Contacts sync</li>
+          <li>GSTIN, state, address, and notes per contact</li>
         </ul>
       </div>
-      <div>
-        <div class="pdf-card">
-          <div class="pdf-toolbar">
-            <div class="pdf-dot"></div>
-            <div class="pdf-dot"></div>
-            <div class="pdf-dot"></div>
-          </div>
-          <div class="pdf-body">
-            <div class="pdf-heading">Sharma &amp; Associates</div>
-            <div class="pdf-sub">Advocates &amp; Solicitors · New Delhi</div>
-            <div class="pdf-line full dark-line"></div>
-            <div class="pdf-line med"></div>
-            <div class="pdf-line full"></div>
-            <div class="pdf-line short"></div>
-            <div style="height: 12px;"></div>
-            <div class="pdf-line full dark-line"></div>
-            <div class="pdf-line med"></div>
-            <div class="pdf-line full"></div>
-            <div class="pdf-line short"></div>
-            <div class="pdf-total-bar">
-              <span>Total Due</span>
-              <span>₹ 30,700</span>
-            </div>
-          </div>
-        </div>
+
+      <div class="feat-card">
+        <span class="feat-card-icon">💼</span>
+        <div class="feat-card-title">Work Log</div>
+        <ul class="feat-card-list">
+          <li>Log court appearances and professional work in one place</li>
+          <li>17 work types: Hearing, Arguments, Drafting, Research &amp; more</li>
+          <li>Built-in live timer for time entries</li>
+          <li>Standard fee schedule — rates pre-fill every new entry</li>
+        </ul>
       </div>
+
+      <div class="feat-card dark-card">
+        <span class="feat-card-icon">🧾</span>
+        <div class="feat-card-title">GST-Compliant Invoices</div>
+        <ul class="feat-card-list">
+          <li>Auto-numbered invoices (INV-202606-001)</li>
+          <li>CGST + SGST or IGST calculated automatically</li>
+          <li>Three PDF templates: Modern, Classic, Minimal</li>
+          <li>TDS recording (194J, 194C) and partial payments tracked</li>
+        </ul>
+      </div>
+
+      <div class="feat-card dark-card">
+        <span class="feat-card-icon">⚡</span>
+        <div class="feat-card-title">Quick Capture (⌘K)</div>
+        <ul class="feat-card-list">
+          <li>Press ⌘K from anywhere to log work in 5 seconds</li>
+          <li>No need to navigate to a matter first — assign later</li>
+          <li>Unassigned items wait in the Inbox with a badge count</li>
+        </ul>
+      </div>
+
+      <div class="feat-card">
+        <span class="feat-card-icon">💰</span>
+        <div class="feat-card-title">Outstanding Dues</div>
+        <ul class="feat-card-list">
+          <li>Cross-matter view of all unpaid and overdue invoices</li>
+          <li>Days overdue calculated automatically</li>
+        </ul>
+      </div>
+
+      <div class="feat-card">
+        <span class="feat-card-icon">⌨️</span>
+        <div class="feat-card-title">Keyboard-First</div>
+        <ul class="feat-card-list">
+          <li>⌘1–5 jump to any section; / focuses search</li>
+          <li>⌘K Quick Capture from anywhere</li>
+          <li>⌘/ opens the full shortcut reference</li>
+        </ul>
+      </div>
+
+      <div class="feat-card">
+        <span class="feat-card-icon">🔒</span>
+        <div class="feat-card-title">Privacy &amp; Offline</div>
+        <ul class="feat-card-list">
+          <li>100% offline — data never leaves your Mac</li>
+          <li>Optional PIN lock</li>
+          <li>Full JSON backup and restore</li>
+        </ul>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1360,13 +1398,17 @@
         <div class="pricing-price">₹0</div>
         <div class="pricing-note">No subscription. No hidden fees.</div>
         <ul class="pricing-features">
-          <li>Unlimited matters &amp; clients</li>
-          <li>PDF invoice generation</li>
-          <li>GST &amp; TDS support</li>
-          <li>Appearances &amp; time tracking</li>
-          <li>Apple Contacts integration</li>
-          <li>Works fully offline</li>
-          <li>Backup &amp; restore</li>
+          <li>Unlimited matters, clients &amp; work entries</li>
+          <li>Matter management with status tracking</li>
+          <li>17 work types + live timer</li>
+          <li>GST-compliant invoices (CGST/SGST/IGST)</li>
+          <li>Three PDF invoice templates</li>
+          <li>Quick Capture (⌘K) from anywhere</li>
+          <li>TDS recording (194J, 194C)</li>
+          <li>Outstanding dues tracker</li>
+          <li>Apple Contacts sync</li>
+          <li>PIN lock + JSON backup</li>
+          <li>100% offline — no account needed</li>
         </ul>
         <a href="https://github.com/shaileshmendon/MemoAppTauri/releases/download/v1.1.2/Memo_1.1.2_aarch64.dmg" class="btn btn-primary pricing-cta">Download Free</a>
       </div>

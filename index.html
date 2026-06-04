@@ -1147,6 +1147,88 @@
       margin-left: 4px;
     }
 
+    /* What's New strip */
+    .whats-new {
+      background: var(--black);
+      color: var(--white);
+      padding: 56px 24px;
+    }
+
+    .whats-new-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .whats-new-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #22c55e;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .whats-new-label::before {
+      content: '';
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      background: #22c55e;
+      border-radius: 50%;
+    }
+
+    .whats-new-title {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .whats-new-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .whats-new-notes {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .whats-new-notes li {
+      font-size: 14px;
+      color: rgba(255,255,255,0.75);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      line-height: 1.5;
+    }
+
+    .whats-new-notes li::before {
+      content: '→';
+      color: #22c55e;
+      font-weight: 600;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    @media (max-width: 768px) {
+      .whats-new-inner {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1305,6 +1387,18 @@
     </div>
   </div>
 </section>
+
+<!-- WHAT'S NEW -->
+<div class="whats-new" id="whats-new-strip" style="display:none;">
+  <div class="whats-new-inner">
+    <div>
+      <div class="whats-new-label">New Release — <span id="wn-version"></span></div>
+      <div class="whats-new-title">What's new<br/>in this version.</div>
+      <p class="whats-new-sub" id="wn-date"></p>
+    </div>
+    <ul class="whats-new-notes" id="wn-notes"></ul>
+  </div>
+</div>
 
 <!-- FEATURES -->
 <section id="features" style="background: var(--grey-50);">
@@ -1713,7 +1807,7 @@
     try {
       const res = await fetch('/version.json?t=' + Date.now());
       const data = await res.json();
-      const { version, downloadUrl } = data;
+      const { version, downloadUrl, releaseDate, releaseNotes } = data;
 
       // Update all download button hrefs and add version tag
       document.querySelectorAll('a.download-btn, a.btn-primary, a.download-btn-footer').forEach(btn => {
@@ -1725,6 +1819,21 @@
           btn.appendChild(tag);
         }
       });
+
+      // Populate What's New strip
+      const strip = document.getElementById('whats-new-strip');
+      if (strip) {
+        document.getElementById('wn-version').textContent = 'v' + version;
+        const d = new Date(releaseDate);
+        document.getElementById('wn-date').textContent = d.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+        const notesList = document.getElementById('wn-notes');
+        // Use releaseNotes if it's an array, otherwise split on ·
+        const notes = Array.isArray(releaseNotes)
+          ? releaseNotes
+          : String(releaseNotes).split('·').map(s => s.trim()).filter(Boolean);
+        notesList.innerHTML = notes.map(n => `<li>${n}</li>`).join('');
+        strip.style.display = '';
+      }
 
       // Show new version banner if user previously downloaded an older version
       const lastSeen = localStorage.getItem('memo_last_seen_version');

@@ -1147,6 +1147,21 @@
       margin-left: 4px;
     }
 
+    .new-release-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #22c55e;
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      padding: 2px 7px;
+      border-radius: 100px;
+      text-transform: uppercase;
+      margin-left: 2px;
+    }
+
     /* What's New strip */
     .whats-new {
       background: var(--black);
@@ -1809,7 +1824,7 @@
       const data = await res.json();
       const { version, downloadUrl, releaseDate, releaseNotes } = data;
 
-      // Update all download button hrefs and add version tag
+      // Update all download button hrefs and add version tag + New badge
       document.querySelectorAll('a.download-btn, a.btn-primary, a.download-btn-footer').forEach(btn => {
         btn.href = downloadUrl;
         if (!btn.querySelector('.version-tag')) {
@@ -1817,6 +1832,10 @@
           tag.className = 'version-tag';
           tag.textContent = 'v' + version;
           btn.appendChild(tag);
+          const badge = document.createElement('span');
+          badge.className = 'new-release-badge';
+          badge.textContent = 'New';
+          btn.appendChild(badge);
         }
       });
 

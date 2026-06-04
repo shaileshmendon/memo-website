@@ -1,0 +1,9 @@
+/releases/latest.json
+  Access-Control-Allow-Origin: *
+  Content-Type: application/json
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/version.json
+  Access-Control-Allow-Origin: *
+  Content-Type: application/json
+  Cache-Control: no-cache, no-store, must-revalidate

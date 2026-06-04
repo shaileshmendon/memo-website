@@ -1,0 +1,12 @@
+{
+  "version": "1.2.1",
+  "releaseDate": "2026-06-04",
+  "downloadUrl": "https://github.com/shaileshmendon/MemoAppTauri/releases/download/v1.2.1/Memo_1.2.1_aarch64.dmg",
+  "mandatory": false,
+  "notes": [
+    "Reports & Analytics — Invoice Register, Outstanding Invoices, Revenue Summary, Collections Follow-Up",
+    "Excel export for all reports with frozen headers, auto-filters, and INR currency formatting",
+    "Accountant Package — single workbook with 6 sheets for your CA",
+    "Update notifications — automatic check every 24 hours"
+  ]
+}
